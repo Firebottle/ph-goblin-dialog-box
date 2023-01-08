@@ -1,0 +1,136 @@
+<div class="dialog-container">
+  <div class="talking-head">
+    <img src="" />
+  </div>
+  <div id="dialog">
+    <div class="dialog-name">$encodeForHtml[$presetListArg[Name]]:</div>
+    <div class="dialog-text">
+      <span class="text-placeholder" style="display: none"
+        >$encodeForHtml[$presetListArg[Message]]</span
+      >
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  function createDiagText() {
+    let message = $(".dialog-text .text-placeholder").text(),
+      dialogs = [message],
+      initial = 0;
+    dialog = dialogs[initial].split("");
+
+    for (i = 0; i < dialog.length; i++) {
+      (function (i) {
+        setTimeout(function () {
+          $(".dialog-text").text($(".dialog-text").text() + dialog[i]);
+
+          if (i == dialog.length - 1) {
+            $(".dialog-text").prepend('<div id="arrow"></div>');
+          }
+
+          let talkingHead = getRandomHead();
+          $(".talking-head img").attr("src", talkingHead);
+        }, 50 * i);
+      })(i);
+    }
+  }
+
+  function getRandomHead() {
+    const heads = [
+      "https://drive.google.com/open?id=1338VBaaAkVmmaIkcQsFkY4-oWog-Q72G/view",
+      "https://drive.google.com/open?id=12uF83B74nhLUrMhfNE6c1ofy4BRHVeny",
+      "https://drive.google.com/open?id=132auK9EubbS9o1lkO8b9N1p5ZPARnmuF",
+    ];
+
+    return heads[Math.floor(Math.random() * heads.length)];
+  }
+
+  createDiagText();
+</script>
+
+<style>
+  @-webkit-keyframes arrow_anim {
+    from {
+      margin-top: 58px;
+    }
+    to {
+      margin-top: 67px;
+    }
+  }
+
+  @-moz-keyframes arrow_anim {
+    from {
+      margin-top: 58px;
+    }
+    to {
+      margin-top: 67px;
+    }
+  }
+
+  @-ms-keyframes arrow_anim {
+    from {
+      margin-top: 58px;
+    }
+    to {
+      margin-top: 67px;
+    }
+  }
+
+  @-o-keyframes arrow_anim {
+    from {
+      margin-top: 58px;
+    }
+    to {
+      margin-top: 67px;
+    }
+  }
+
+  @keyframes arrow_anim {
+    from {
+      margin-top: 58px;
+    }
+    to {
+      margin-top: 67px;
+    }
+  }
+
+  #arrow {
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid red;
+    height: 0;
+    margin: 60px 0px 0px 360px;
+    position: absolute;
+    width: 0;
+
+    -webkit-animation: arrow_anim 0.3s steps(3) infinite;
+    -moz-animation: arrow_anim 0.3s steps(3) infinite;
+    -ms-animation: arrow_anim 0.3s steps(3) infinite;
+    -o-animation: arrow_anim 0.3s steps(3) infinite;
+    animation: arrow_anim 0.3s steps(3) infinite;
+  }
+
+  .dialog-name {
+    margin-bottom: 1em;
+  }
+
+  .talking-head img {
+    width: 250px;
+    height: 250px;
+  }
+
+  #dialog {
+    background: #1c1c1c;
+    border-radius: 5px;
+    box-shadow: 0 0 0 6px #f5eac8, 0 0 0 12px #251c00;
+    color: #f5eac8;
+    font-family: Arial;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 20px 20px 20px 20px;
+    position: relative;
+    text-transform: uppercase;
+    word-spacing: 3px;
+    width: 400px;
+  }
+</style>
