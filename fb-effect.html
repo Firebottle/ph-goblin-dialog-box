@@ -25,15 +25,15 @@
       (function (i) {
         setTimeout(function () {
           // Animate text.
-          $(".dialog-text").text($(".dialog-text").text() + dialog[i]);
+          $(`#${uniqueID} .dialog-text`).text($(`#${uniqueID} .dialog-text`).text() + dialog[i]);
 
           if (i == dialog.length - 1) {
-            $(".dialog").append('<div id="arrow"></div>');
+            $(`#${uniqueID} .dialog`).append('<div id="arrow"></div>');
           }
 
           // Animate talking head.
           let talkingHead = getRandomHead();
-          $(".talking-head img").attr("src", talkingHead);
+          $(`#${uniqueID} .talking-head img`).attr("src", talkingHead);
         }, 50 * i);
       })(i);
     }
