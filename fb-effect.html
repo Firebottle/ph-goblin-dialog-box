@@ -2,7 +2,7 @@
   <div class="talking-head">
     <img src="" />
   </div>
-  <div id="dialog">
+  <div class="dialog">
     <div class="dialog-name">$encodeForHtml[$presetListArg[Name]]:</div>
     <div class="dialog-text">
       <span class="text-placeholder" style="display: none"
@@ -37,9 +37,9 @@
 
   function getRandomHead() {
     const heads = [
-      "https://github.com/Firebottle/ph-goblin-dialog-box/blob/fc30df5b1f874ec3cfc6fa5d597070d594ae6203/goblins/gobboclose.png",
-      "https://github.com/Firebottle/ph-goblin-dialog-box/blob/fc30df5b1f874ec3cfc6fa5d597070d594ae6203/goblins/gobboopen.png",
-      "https://github.com/Firebottle/ph-goblin-dialog-box/blob/fc30df5b1f874ec3cfc6fa5d597070d594ae6203/goblins/gobbospit.png",
+      "https://firebottle.github.io/ph-goblin-dialog-box/goblins/gobboclose.png",
+      "https://firebottle.github.io/ph-goblin-dialog-box/goblins/gobboopen.png",
+      "https://firebottle.github.io/ph-goblin-dialog-box/goblins/gobbospit.png",
     ];
 
     return heads[Math.floor(Math.random() * heads.length)];
@@ -97,9 +97,9 @@
   #arrow {
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
-    border-top: 10px solid red;
+    border-top: 10px solid green;
     height: 0;
-    margin: 60px 0px 0px 360px;
+    margin: 60px 0px 0px 480px;
     position: absolute;
     width: 0;
 
@@ -108,6 +108,12 @@
     -ms-animation: arrow_anim 0.3s steps(3) infinite;
     -o-animation: arrow_anim 0.3s steps(3) infinite;
     animation: arrow_anim 0.3s steps(3) infinite;
+  }
+
+  .dialog-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .dialog-name {
@@ -119,7 +125,7 @@
     height: 250px;
   }
 
-  #dialog {
+  .dialog {
     background: #1c1c1c;
     border-radius: 5px;
     box-shadow: 0 0 0 6px #f5eac8, 0 0 0 12px #251c00;
@@ -131,6 +137,21 @@
     position: relative;
     text-transform: uppercase;
     word-spacing: 3px;
-    width: 400px;
+    width: 500px;
+    margin-left: -1em;
   }
+
+  .dialog:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -32px;
+    width: 70px;
+    height: 30px;
+    background-color: #1c1c1c;
+    transform: skew(55deg);
+    transform-origin: top right;
+    border-radius: 15% 0 0 0 / 25%;
+    z-index: -1;
+}
 </style>
