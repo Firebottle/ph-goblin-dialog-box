@@ -1,0 +1,91 @@
+<div class="dialog-container">
+  <div class="inner-container" style="position:relative;">
+    <div class="talking-head">
+      <img src="https://firebottle.github.io/ph-goblin-dialog-box/Storm/scroll_t_02.png" />
+    </div>
+    <div class="dialog">
+      <div class="dialog-name">Contact Complete!</div>
+      <div class="text-placeholder" style="display: none">$encodeForHtml[$presetListArg[Message]]</div>
+      <div class="dialog-text"></div>
+      <div class="individual" style="display: none">Contracts Complete:<br>$encodeForHtml[$presetListArg[Individual]]</div>
+      <div class="community" style="display: none">Community Total:<br>$encodeForHtml[$presetListArg[Community]]</div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  const uniqueID = Date.now();
+  $('.dialog-container').attr('id', uniqueID);
+
+  function createDiagText() {
+    let message = $(`#${uniqueID} .text-placeholder`).text(),
+      dialogs = [message],
+      initial = 0,
+      dialog = dialogs[initial].split("");
+
+    for (i = 0; i < dialog.length; i++) {
+      (function (i) {
+        setTimeout(function () {
+          // Animate text.
+          $(".dialog-text").text($(".dialog-text").text() + dialog[i]);
+        }, 50 * i);
+      })(i);
+    }
+
+    setTimeout(function() {
+        $('.individual').fadeIn('fast');
+        $('.community').fadeIn('fast');
+    }, 50 * i);
+  }
+  createDiagText();
+</script>
+
+<style>
+
+  .dialog-container{
+    width: 250px;
+    margin: auto;
+    position: absolute;
+    top:50%;
+    right: 1em;
+    transform: translate(0%, -50%);
+  }
+
+  .inner-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #F8F0C0;
+    box-shadow: 0 0 0 3px black, 0 0 0 6px #cecece;
+  }
+
+  .dialog-name,  .dialog-text{
+    margin-bottom: 1em;
+  }
+
+  .talking-head img {
+    margin: auto;
+    width: 140px;
+    padding: 10px;
+  }
+
+  .individual, .community{
+    font-size: .85em;
+    padding-bottom: 1em;
+  }
+
+  .dialog {
+    border-radius: 5px;
+    color: black;
+    font-family: Arial;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 10px 20px 10px;
+    position: relative;
+    text-transform: uppercase;
+    word-spacing: 3px;
+    width: 250px;
+    margin-left: 1em;
+  }
+</style>

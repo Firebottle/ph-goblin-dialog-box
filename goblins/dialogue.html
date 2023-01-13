@@ -1,0 +1,170 @@
+<div class="dialog-container">
+  <div class="inner-container" style="position:relative;">
+    <div class="talking-head">
+      <img src="" />
+    </div>
+    <div class="dialog">
+      <div class="dialog-name">$encodeForHtml[$presetListArg[Name]]:</div>
+      <div class="text-placeholder" style="display: none">$encodeForHtml[$presetListArg[Message]]</div>
+      <div class="dialog-text"></div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  const uniqueID = Date.now();
+  $('.dialog-container').attr('id', uniqueID);
+
+  function createDiagText() {
+    let message = $(`#${uniqueID} .text-placeholder`).text(),
+      dialogs = [message],
+      initial = 0,
+      dialog = dialogs[initial].split("");
+
+    for (i = 0; i < dialog.length; i++) {
+      (function (i) {
+        setTimeout(function () {
+          // Animate text.
+          $(".dialog-text").text($(".dialog-text").text() + dialog[i]);
+
+          if (i == dialog.length - 1) {
+            $(".dialog").append('<div id="arrow"></div>');
+          }
+
+          // Animate talking head.
+          let talkingHead = getRandomHead();
+          $(".talking-head img").attr("src", talkingHead);
+        }, 50 * i);
+      })(i);
+    }
+  }
+
+  function getRandomHead() {
+    const heads = [
+      "https://firebottle.github.io/ph-goblin-dialog-box/goblins/gobboclose.png",
+      "https://firebottle.github.io/ph-goblin-dialog-box/goblins/gobboopen.png",
+      "https://firebottle.github.io/ph-goblin-dialog-box/goblins/gobbospit.png",
+    ];
+
+    return heads[Math.floor(Math.random() * heads.length)];
+  }
+
+  createDiagText();
+</script>
+
+<style>
+  @-webkit-keyframes arrow_anim {
+    from {
+      margin-top: 0;
+    }
+    to {
+      margin-top: 5px;
+    }
+  }
+
+  @-moz-keyframes arrow_anim {
+    from {
+      margin-top: 0;
+    }
+    to {
+      margin-top: 5px;
+    }
+  }
+
+  @-ms-keyframes arrow_anim {
+    from {
+      margin-top: 0;
+    }
+    to {
+      margin-top: 5px;
+    }
+  }
+
+  @-o-keyframes arrow_anim {
+    from {
+      margin-top: 0;
+    }
+    to {
+      margin-top: 5px;
+    }
+  }
+
+  @keyframes arrow_anim {
+    from {
+      margin-top: 0;
+    }
+    to {
+      margin-top: 5px;
+    }
+  }
+
+  #arrow {
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid green;
+    height: 0;
+    margin: 0px 0px 0px 0px;
+    position: absolute;
+    width: 0;
+
+    -webkit-animation: arrow_anim 0.3s steps(3) infinite;
+    -moz-animation: arrow_anim 0.3s steps(3) infinite;
+    -ms-animation: arrow_anim 0.3s steps(3) infinite;
+    -o-animation: arrow_anim 0.3s steps(3) infinite;
+    animation: arrow_anim 0.3s steps(3) infinite;
+  }
+
+  .dialog-container{
+    width: 700px;
+    margin: auto;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+
+  .inner-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .dialog-name,  .dialog-text{
+    margin-bottom: 1em;
+  }
+
+  .talking-head img {
+    width: 250px;
+    height: 250px;
+  }
+
+  .dialog {
+    background: #1c1c1c;
+    border-radius: 5px;
+    box-shadow: 0 0 0 6px #f5eac8, 0 0 0 12px #251c00;
+    color: #f5eac8;
+    font-family: Arial;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 20px 20px 20px 20px;
+    position: relative;
+    text-transform: uppercase;
+    word-spacing: 3px;
+    width: 500px;
+    margin-left: -1em;
+  }
+
+  .dialog:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -32px;
+    width: 70px;
+    height: 30px;
+    background-color: #1c1c1c;
+    transform: skew(55deg);
+    transform-origin: top right;
+    border-radius: 15% 0 0 0 / 25%;
+    z-index: -1;
+}
+</style>
